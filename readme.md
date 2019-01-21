@@ -42,6 +42,7 @@ http.get(url, response => {
 	response.on('readable', () => {
 		const chunk = response.read(fileType.minimumBytes);
 		response.destroy();
+		if(!chunk) return;
 		console.log(fileType(chunk));
 		//=> {ext: 'gif', mime: 'image/gif'}
 	});
